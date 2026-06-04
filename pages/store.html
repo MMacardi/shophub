@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Store — ShopHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body style="background:#f5f5f5;">
+
+<!-- Top bar -->
+<div class="top-bar">
+  <div class="container d-flex justify-content-between align-items-center py-1">
+    <div id="topbar-left">
+      <span>Hello! Please <a href="/login.html">Sign In</a></span>
+    </div>
+    <div>
+      <a href="/" class="me-3">← Back to Shop</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header py-2">
+  <div class="container d-flex align-items-center gap-3">
+    <a href="/" class="logo" style="text-decoration:none;">
+      <span class="logo-text">ShopHub</span>
+      <span class="logo-sub">shophub.com</span>
+    </a>
+    <div id="breadcrumb" class="text-muted small ms-3" style="font-size:12px;"></div>
+  </div>
+</header>
+
+<div class="container my-4" style="max-width:1100px;">
+
+  <div id="store-loading" class="text-center py-5 text-muted">Loading store…</div>
+
+  <div id="store-main" style="display:none;">
+
+    <!-- Shop header -->
+    <div class="store-header">
+      <div class="store-avatar" id="store-avatar">🏪</div>
+      <div class="flex-grow-1">
+        <h1 class="store-name" id="store-name"></h1>
+        <div class="store-meta">
+          <span class="store-rating" id="store-rating"></span>
+          <span class="store-dot">·</span>
+          <span id="store-product-count"></span>
+          <span class="store-dot">·</span>
+          <span id="store-review-count"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs store-tabs mt-4">
+      <li class="nav-item"><a class="nav-link active" data-tab="products" href="#">Products</a></li>
+      <li class="nav-item"><a class="nav-link"        data-tab="reviews"  href="#">Shop Reviews</a></li>
+    </ul>
+
+    <!-- Products tab -->
+    <section id="tab-products" class="store-tab-body mt-3">
+      <div class="row g-3" id="store-products"></div>
+      <div id="store-products-empty" class="empty-state" style="display:none;">
+        <div class="empty-icon">📦</div>
+        <div class="empty-text">No products listed yet</div>
+      </div>
+    </section>
+
+    <!-- Reviews tab -->
+    <section id="tab-reviews" class="store-tab-body mt-3" style="display:none;">
+      <div id="store-reviews"></div>
+      <div id="store-reviews-empty" class="empty-state" style="display:none;">
+        <div class="empty-icon">💬</div>
+        <div class="empty-text">No shop reviews yet</div>
+        <div class="empty-sub">Buy from this shop to leave the first one.</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/core/constants.js"></script>
+<script src="/js/core/api.js"></script>
+<script src="/js/core/auth.js"></script>
+<script src="/js/core/utils.js"></script>
+<script src="/js/pages/store.js"></script>
+<script src="/js/components/ai-chat.js"></script>
+</body>
+</html>

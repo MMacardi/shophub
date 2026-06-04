@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product — ShopHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body style="background:#f5f5f5;">
+
+<!-- Top bar -->
+<div class="top-bar">
+  <div class="container d-flex justify-content-between align-items-center py-1">
+    <div id="topbar-left">
+      <span>Hello! Please <a href="/login.html">Sign In</a></span>
+    </div>
+    <div>
+      <a href="/" class="me-3">← Back to Shop</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header py-2">
+  <div class="container d-flex align-items-center gap-3">
+    <a href="/" class="logo" style="text-decoration:none;">
+      <span class="logo-text">ShopHub</span>
+      <span class="logo-sub">shophub.com</span>
+    </a>
+    <div id="breadcrumb" class="text-muted small ms-3" style="font-size:12px;"></div>
+  </div>
+</header>
+
+<div class="container my-4" style="max-width:1100px;">
+
+  <!-- Product Main -->
+  <div id="product-loading" class="text-center py-5 text-muted">Loading product…</div>
+
+  <div id="product-main" style="display:none;">
+    <div class="row g-4">
+
+      <!-- Left: emoji + purchase -->
+      <div class="col-md-4">
+        <div class="pd-emoji-card">
+          <div class="pd-emoji" id="pd-emoji">📦</div>
+          <div id="pd-sale-badge" class="pd-sale-badge" style="display:none">SALE</div>
+        </div>
+
+        <div class="pd-buy-card mt-3">
+          <div class="pd-price-row" id="pd-price-row"></div>
+          <div class="pd-stock" id="pd-stock"></div>
+          <button class="btn-cart-lg mt-3 w-100" id="pd-add-btn" onclick="addToCart()">
+            🛒 Add to Cart
+          </button>
+          <a href="/login.html" class="btn-cart-lg mt-3 w-100" id="pd-login-btn" style="display:none;text-align:center;">
+            Sign in to buy
+          </a>
+          <div class="pd-trust mt-3">
+            <div><i class="bi bi-shield-check text-success me-1"></i> Buyer Protection</div>
+            <div class="mt-1"><i class="bi bi-arrow-counterclockwise text-primary me-1"></i> 30-day Returns</div>
+            <div class="mt-1"><i class="bi bi-truck text-warning me-1"></i> Free Shipping</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: info -->
+      <div class="col-md-8">
+        <div class="pd-info-card">
+          <div class="pd-category" id="pd-category"></div>
+          <h1 class="pd-name" id="pd-name">Loading…</h1>
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="pd-stars" id="pd-stars"></div>
+            <a href="#reviews" class="text-muted small" id="pd-review-link"></a>
+          </div>
+          <div class="pd-seller mb-4" id="pd-seller"></div>
+          <div class="pd-desc-title">About this product</div>
+          <p class="pd-desc" id="pd-desc"></p>
+
+          <table class="pd-details-table">
+            <tbody id="pd-details-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <div id="reviews-section" class="mt-4" style="display:none;">
+
+    <!-- Rating summary -->
+    <div class="pd-reviews-header">
+      <div class="pd-avg-score" id="avg-score">0</div>
+      <div class="flex-grow-1">
+        <div class="pd-avg-stars mb-1" id="avg-stars"></div>
+        <div class="text-muted small" id="avg-label"></div>
+        <div class="pd-bars mt-2" id="rating-bars"></div>
+      </div>
+    </div>
+
+    <!-- Write review -->
+    <div id="review-form-wrap" class="pd-write-review" style="display:none;">
+      <div class="fw-bold mb-2">✍️ Write a Review</div>
+      <div class="pd-star-picker mb-2" id="star-picker">
+        <span class="pick-star" data-v="1">★</span>
+        <span class="pick-star" data-v="2">★</span>
+        <span class="pick-star" data-v="3">★</span>
+        <span class="pick-star" data-v="4">★</span>
+        <span class="pick-star" data-v="5">★</span>
+      </div>
+      <textarea id="review-comment" class="form-control mb-2" rows="3" placeholder="Share your experience with this product…" maxlength="1000"></textarea>
+      <button class="btn btn-sm text-white" style="background:var(--primary);" onclick="submitReview()">Publish Review</button>
+    </div>
+    <div id="review-gate" class="text-muted small pd-gate" style="display:none;"></div>
+
+    <!-- Review list -->
+    <div id="reviews-list" class="mt-3"></div>
+    <div id="reviews-empty" class="empty-state" style="display:none;padding:40px 20px;">
+      <div class="empty-icon">💬</div>
+      <div class="empty-text">No reviews yet</div>
+      <div class="empty-sub">Be the first to share your experience!</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/core/constants.js"></script>
+<script src="/js/core/api.js"></script>
+<script src="/js/core/auth.js"></script>
+<script src="/js/core/utils.js"></script>
+<script src="/js/pages/product.js"></script>
+<script src="/js/components/ai-chat.js"></script>
+</body>
+</html>

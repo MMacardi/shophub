@@ -1,0 +1,6 @@
+*.rar
+*.png
+Dockerfile
+docker-compose.yml
+.dockerignore
+backend/

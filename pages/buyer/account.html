@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Account — ShopHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <script>(function(){const s=localStorage.getItem('sh_session');if(!s){window.location.href='/login.html';return;}try{const p=JSON.parse(s);if(p.role!=='buyer')window.location.href='/login.html';}catch{window.location.href='/login.html';}})()</script>
+</head>
+<body>
+<div id="sh-nav"></div>
+
+<div class="dash-page">
+  <div class="dash-content">
+    <div class="dash-title">👤 My Account</div>
+    <div class="dash-subtitle" id="welcome-sub">Manage your wallet, profile and orders</div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-5">
+        <div class="wallet-card">
+          <div class="wallet-label-lg">💰 ShopHub Wallet</div>
+          <div class="wallet-balance-lg" id="wallet-balance">¥0.00</div>
+          <div class="wallet-hint">Funds used for purchases at checkout</div>
+          <div class="d-flex gap-2 mt-3">
+            <input type="number" id="topup-amount" class="form-control form-control-sm" placeholder="Add amount (¥)" min="1" step="10"/>
+            <button class="btn btn-light btn-sm fw-bold" onclick="topUp()">Top Up</button>
+          </div>
+          <div class="d-flex gap-2 mt-2">
+            <button class="btn btn-sm w-100" style="background:rgba(255,255,255,.2);color:#fff" onclick="quickTop(100)">+¥100</button>
+            <button class="btn btn-sm w-100" style="background:rgba(255,255,255,.2);color:#fff" onclick="quickTop(500)">+¥500</button>
+            <button class="btn btn-sm w-100" style="background:rgba(255,255,255,.2);color:#fff" onclick="quickTop(1000)">+¥1000</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="row g-3 h-100">
+          <div class="col-6"><div class="stat-card orange h-100"><div><div class="stat-value" id="st-orders">0</div><div class="stat-label">Total Orders</div></div><div class="stat-icon">📦</div></div></div>
+          <div class="col-6"><div class="stat-card blue h-100"><div><div class="stat-value" id="st-spent">¥0</div><div class="stat-label">Total Spent</div></div><div class="stat-icon">💳</div></div></div>
+          <div class="col-6"><div class="stat-card green h-100"><div><div class="stat-value" id="st-items">0</div><div class="stat-label">Items Bought</div></div><div class="stat-icon">🛒</div></div></div>
+          <div class="col-6"><div class="stat-card purple h-100"><div><div class="stat-value" id="st-cart">0</div><div class="stat-label">Items in Cart</div></div><div class="stat-icon">🛍️</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="table-card h-100">
+          <div class="card-heading">Profile</div>
+          <div class="profile-row"><span class="profile-key">Username</span><span class="profile-val" id="p-username">—</span></div>
+          <div class="profile-row"><span class="profile-key">Email</span><span class="profile-val" id="p-email">—</span></div>
+          <div class="profile-row"><span class="profile-key">Role</span><span class="profile-val"><span class="sh-role-badge sh-role-buyer">buyer</span></span></div>
+          <hr/>
+          <div class="d-grid gap-2">
+            <a href="/" class="btn btn-sm" style="background:var(--primary);color:#fff;"><i class="bi bi-shop me-1"></i> Continue Shopping</a>
+            <a href="/pages/buyer/cart.html"   class="btn btn-outline-secondary btn-sm"><i class="bi bi-cart me-1"></i> View Cart</a>
+            <a href="/pages/buyer/orders.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-bag-check me-1"></i> All Orders</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="table-card h-100">
+          <div class="card-heading">
+            <span>Recent Orders</span>
+            <a href="/pages/buyer/orders.html" class="see-more">View All →</a>
+          </div>
+          <div id="recent-empty" class="empty-state" style="display:none;padding:30px">
+            <div class="empty-icon" style="font-size:40px">📋</div>
+            <div class="empty-text">No orders yet</div>
+            <div class="empty-sub">Start shopping to see your orders here</div>
+          </div>
+          <div id="recent-orders"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/core/constants.js"></script>
+<script src="/js/core/api.js"></script>
+<script src="/js/core/auth.js"></script>
+<script src="/js/core/utils.js"></script>
+<script src="/js/components/nav.js"></script>
+<script src="/js/pages/buyer/account.js"></script>
+<script src="/js/components/ai-chat.js"></script>
+</body>
+</html>
