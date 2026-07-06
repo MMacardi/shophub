@@ -75,6 +75,7 @@ function clearAISuggestion() {
 
 // Listen for bot search results emitted by the AI chat widget.
 window.addEventListener('ai-suggestion', (ev) => {
+  console.log('[Home] received ai-suggestion event', ev.detail);
   const { productIds, query } = ev.detail || {};
   if (!productIds || !productIds.length) return;
   aiSuggestionIds = productIds;

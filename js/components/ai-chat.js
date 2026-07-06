@@ -212,13 +212,20 @@
   // Scans the returned messages for the LAST `search_products` tool result
   // and emits a window event with the product IDs + the user's last question.
   function broadcastAISearchResults(messages) {
+    console.log('[ShopBot] turn finished. messages:', messages);
+
     let lastSearch = null;
     for (const m of messages) {
-      if (m.role !== 'tool' || m.name !== 'search_products') continue;
+      if (m.role !== 'tool') continue;
+      console.log('[ShopBot] tool message found:', m.name, m.content?.slice(0, 100));
+      if (m.name !== 'search_products') continue;
       try { lastSearch = JSON.parse(m.content || '{}'); } catch { /* skip */ }
     }
-    if (!lastSearch || !Array.isArray(lastSearch.products)) return;
+    if (!lastSearch) { console.log('[ShopBot] no search_products in this turn'); return; }
+    if (!Array.isArray(lastSearch.products)) { console.log('[ShopBot] search result has no products array', lastSearch); return; }
+
     const ids = lastSearch.products.map(p => p.id).filter(Boolean);
+    console.log('[ShopBot] dispatching ai-suggestion with ids:', ids);
     if (!ids.length) return;
 
     // Find the user's most recent message for a nice chip label
